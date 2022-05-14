@@ -1,4 +1,4 @@
-package edu.uoc.epcsd.showcatalog.entities;
+package edu.uoc.epcsd.showcatalog.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -6,7 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "category")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 @ToString(exclude = "shows")
 @Getter
 @Setter
@@ -20,10 +21,18 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Show> shows;
+
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }
