@@ -3,11 +3,8 @@ package edu.uoc.epcsd.showcatalog.controllers;
 import edu.uoc.epcsd.showcatalog.controllers.base.BaseController;
 import edu.uoc.epcsd.showcatalog.errors.exceptions.InvalidParamError;
 import edu.uoc.epcsd.showcatalog.errors.exceptions.NotUniqueValueError;
-import edu.uoc.epcsd.showcatalog.models.dtos.CategoryDto;
 import edu.uoc.epcsd.showcatalog.models.dtos.PerformanceDto;
-import edu.uoc.epcsd.showcatalog.models.entities.Category;
 import edu.uoc.epcsd.showcatalog.models.entities.Performance;
-import edu.uoc.epcsd.showcatalog.models.mappers.CategoryMapper;
 import edu.uoc.epcsd.showcatalog.models.mappers.PerformanceMapper;
 import edu.uoc.epcsd.showcatalog.services.PerformanceService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,7 +48,7 @@ public class PerformanceController extends BaseController {
             Performance created = performanceService.save(showName, entity);
             PerformanceDto dto = PerformanceMapper.mapToDto(created);
             return ResponseEntity.ok(dto);
-        } catch (InvalidParamError | NotUniqueValueError error) {
+        } catch (InvalidParamError error) {
             logHandledError(error);
             throw error;
         } catch (Exception error) {
