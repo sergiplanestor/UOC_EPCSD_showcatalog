@@ -1,7 +1,8 @@
 package edu.uoc.epcsd.showcatalog.models.dtos;
 
-import edu.uoc.epcsd.showcatalog.models.values.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import java.util.Date;
 
@@ -16,5 +17,13 @@ public class PerformanceDto {
     private Date time;
     private String streamingUrl;
     private Integer remainingSeats;
-    private Status status;
+    @Nullable
+    private String identifier;
+
+    public PerformanceDto(Date date, Date time, String streamingUrl, Integer remainingSeats) {
+        this.date = date;
+        this.time = time;
+        this.streamingUrl = streamingUrl;
+        this.remainingSeats = remainingSeats;
+    }
 }

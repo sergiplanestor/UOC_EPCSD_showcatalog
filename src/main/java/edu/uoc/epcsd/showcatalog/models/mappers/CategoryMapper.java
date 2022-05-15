@@ -1,10 +1,11 @@
 package edu.uoc.epcsd.showcatalog.models.mappers;
 
+import edu.uoc.epcsd.showcatalog.models.db.entities.Category;
 import edu.uoc.epcsd.showcatalog.models.dtos.CategoryDto;
-import edu.uoc.epcsd.showcatalog.models.entities.Category;
-import edu.uoc.epcsd.showcatalog.utils.ListUtils;
 
 import java.util.List;
+
+import static edu.uoc.epcsd.showcatalog.utils.CollectionUtils.map;
 
 public class CategoryMapper {
 
@@ -12,7 +13,7 @@ public class CategoryMapper {
     }
 
     public static List<Category> mapToEntity(List<CategoryDto> dtos) {
-        return ListUtils.map(dtos, CategoryMapper::mapToEntity);
+        return map(dtos, CategoryMapper::mapToEntity);
     }
 
     public static Category mapToEntity(CategoryDto dto) {
@@ -20,7 +21,7 @@ public class CategoryMapper {
     }
 
     public static List<CategoryDto> mapToDto(List<Category> entities) {
-        return ListUtils.map(entities, CategoryMapper::mapToDto);
+        return map(entities, CategoryMapper::mapToDto);
     }
 
     public static CategoryDto mapToDto(Category entity) {

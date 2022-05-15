@@ -1,6 +1,6 @@
 package edu.uoc.epcsd.showcatalog.models.dtos;
 
-import edu.uoc.epcsd.showcatalog.models.entities.Category;
+import edu.uoc.epcsd.showcatalog.models.db.entities.Category;
 import lombok.*;
 
 /***

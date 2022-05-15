@@ -1,11 +1,11 @@
 package edu.uoc.epcsd.showcatalog.controllers;
 
 import edu.uoc.epcsd.showcatalog.controllers.base.BaseController;
-import edu.uoc.epcsd.showcatalog.models.dtos.CategoryDto;
-import edu.uoc.epcsd.showcatalog.models.mappers.CategoryMapper;
-import edu.uoc.epcsd.showcatalog.models.entities.Category;
 import edu.uoc.epcsd.showcatalog.errors.exceptions.InvalidParamError;
 import edu.uoc.epcsd.showcatalog.errors.exceptions.NotUniqueValueError;
+import edu.uoc.epcsd.showcatalog.models.dtos.CategoryDto;
+import edu.uoc.epcsd.showcatalog.models.db.entities.Category;
+import edu.uoc.epcsd.showcatalog.models.mappers.CategoryMapper;
 import edu.uoc.epcsd.showcatalog.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

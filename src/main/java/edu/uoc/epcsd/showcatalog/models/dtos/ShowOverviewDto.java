@@ -1,13 +1,12 @@
 package edu.uoc.epcsd.showcatalog.models.dtos;
 
 
-import edu.uoc.epcsd.showcatalog.models.entities.Show;
+import edu.uoc.epcsd.showcatalog.models.db.entities.Show;
 import edu.uoc.epcsd.showcatalog.models.values.Duration;
 import edu.uoc.epcsd.showcatalog.models.values.Status;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 /***
  *  Data transfer object for the entity {@link Show}.
@@ -18,7 +17,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShowDto {
+public class ShowOverviewDto {
     private String name;
     private String description;
     private String image;
@@ -27,6 +26,4 @@ public class ShowDto {
     private Integer capacity;
     private Date onSaleDate;
     private Status status;
-    private List<CategoryDto> categories;
-    private List<PerformanceDto> performances;
 }

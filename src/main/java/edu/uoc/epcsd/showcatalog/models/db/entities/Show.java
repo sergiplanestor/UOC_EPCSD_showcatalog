@@ -1,10 +1,11 @@
-package edu.uoc.epcsd.showcatalog.models.entities;
+package edu.uoc.epcsd.showcatalog.models.db.entities;
 
+import edu.uoc.epcsd.showcatalog.models.db.valueobj.Performance;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.OverridesAttribute;
 import java.util.List;
-import java.util.Set;
 
 @Entity(name = "show")
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "start_sale_date"})})
@@ -57,12 +58,13 @@ public class Show {
     )
     private List<Category> categories;
 
-    @OneToMany(mappedBy = "show")
+    @ElementCollection
+    @Access(AccessType.PROPERTY)
+    @CollectionTable(uniqueConstraints = {@UniqueConstraint(columnNames = {"show_id", "date", "time"})})
     private List<Performance> performances;
 
     public Show(String name, String description, String image, Float price, Long duration, String durationUnit,
-                Integer capacity, String onSaleDate, Integer status, List<Category> categories,
-                List<Performance> performances) {
+                Integer capacity, String onSaleDate, Integer status) {
         this.name = name;
         this.description = description;
         this.image = image;
@@ -72,7 +74,17 @@ public class Show {
         this.capacity = capacity;
         this.onSaleDate = onSaleDate;
         this.status = status;
+    }
+
+    public Show(String name, String description, String image, Float price, Long duration, String durationUnit,
+                Integer capacity, String onSaleDate, Integer status, List<Category> categories,
+                List<Performance> performances) {
+        this(name, description, image, price, duration, durationUnit, capacity, onSaleDate, status);
         this.categories = categories;
         this.performances = performances;
+    }
+
+    public void addPerformance(Performance performance) {
+        this.performances.add(performance);
     }
 }

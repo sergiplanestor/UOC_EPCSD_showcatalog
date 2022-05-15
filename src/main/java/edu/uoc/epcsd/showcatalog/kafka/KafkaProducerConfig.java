@@ -1,6 +1,6 @@
 package edu.uoc.epcsd.showcatalog.kafka;
 
-import edu.uoc.epcsd.showcatalog.models.entities.Show;
+import edu.uoc.epcsd.showcatalog.models.db.entities.Show;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

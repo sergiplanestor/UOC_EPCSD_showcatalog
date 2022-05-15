@@ -1,9 +1,10 @@
 package edu.uoc.epcsd.showcatalog.models.values;
 
-import edu.uoc.epcsd.showcatalog.utils.ListUtils;
 import lombok.Getter;
 
 import java.util.Arrays;
+
+import static edu.uoc.epcsd.showcatalog.utils.CollectionUtils.find;
 
 @Getter
 public enum Status {
@@ -21,6 +22,6 @@ public enum Status {
     }
 
     public static Status from(int statusValue, Status fallback) {
-        return ListUtils.find(Arrays.asList(values()), fallback, s -> s.getValue() == statusValue);
+        return find(Arrays.asList(values()), fallback, s -> s.getValue() == statusValue);
     }
 }

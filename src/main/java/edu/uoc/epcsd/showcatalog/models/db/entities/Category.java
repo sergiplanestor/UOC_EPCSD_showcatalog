@@ -1,4 +1,4 @@
-package edu.uoc.epcsd.showcatalog.models.entities;
+package edu.uoc.epcsd.showcatalog.models.db.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

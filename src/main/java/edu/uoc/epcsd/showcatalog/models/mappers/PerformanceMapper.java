@@ -1,11 +1,12 @@
 package edu.uoc.epcsd.showcatalog.models.mappers;
 
+import edu.uoc.epcsd.showcatalog.models.db.valueobj.DateTime;
+import edu.uoc.epcsd.showcatalog.models.db.valueobj.Performance;
 import edu.uoc.epcsd.showcatalog.models.dtos.PerformanceDto;
-import edu.uoc.epcsd.showcatalog.models.entities.Performance;
-import edu.uoc.epcsd.showcatalog.models.values.Status;
-import edu.uoc.epcsd.showcatalog.utils.ListUtils;
 
 import java.util.List;
+
+import static edu.uoc.epcsd.showcatalog.utils.CollectionUtils.map;
 
 public class PerformanceMapper {
 
@@ -13,30 +14,28 @@ public class PerformanceMapper {
     }
 
     public static List<Performance> mapToEntity(List<PerformanceDto> dtos) {
-        return ListUtils.map(dtos, PerformanceMapper::mapToEntity);
+        return map(dtos, PerformanceMapper::mapToEntity);
     }
 
     public static Performance mapToEntity(PerformanceDto dto) {
         return new Performance(
-                DateMapper.mapOnlyDate(dto.getDate()),
-                DateMapper.mapOnlyTime(dto.getTime()),
+                new DateTime(DateMapper.mapOnlyDate(dto.getDate()), DateMapper.mapOnlyTime(dto.getTime())),
                 dto.getStreamingUrl(),
-                dto.getRemainingSeats(),
-                dto.getStatus().getValue()
+                dto.getRemainingSeats()
         );
     }
 
     public static List<PerformanceDto> mapToDto(List<Performance> entities) {
-        return ListUtils.map(entities, PerformanceMapper::mapToDto);
+        return map(entities, PerformanceMapper::mapToDto);
     }
 
     public static PerformanceDto mapToDto(Performance entity) {
         return new PerformanceDto(
-                DateMapper.mapOnlyDate(entity.getDate()),
-                DateMapper.mapOnlyTime(entity.getTime()),
+                DateMapper.mapOnlyDate(entity.getDateTime().getDate()),
+                DateMapper.mapOnlyTime(entity.getDateTime().getTime()),
                 entity.getStreamingUrl(),
                 entity.getRemainingSeats(),
-                Status.from(entity.getStatus())
+                entity.getId()
         );
     }
 }
